@@ -1,4 +1,5 @@
 from flask import request
+from flask_jwt import jwt_required
 from flask_restful import Resource, reqparse, fields, marshal_with, abort
 from models.model import PersonModel
 
@@ -24,7 +25,9 @@ resource_fields = {
 
 class Person(Resource):
 
+
     @marshal_with(resource_fields)
+    @jwt_required()
     def get(self, PersonId):
         result = PersonModel.query.filter_by(PersonId=PersonId).first()
         if not result:
