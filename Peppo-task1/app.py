@@ -1,9 +1,10 @@
 from flask import Flask
 from flask_restful import Api
 from db import db
-from resources.resource import Person, MultiplePerson, PersonDetails
+from resources.resource import Person, MultiplePerson
 from flask_jwt import JWT
 from security import identity, auth
+from test import FlaskTest
 
 app = Flask(__name__)
 app.secret_key = '#0#'
@@ -15,8 +16,7 @@ api = Api(app)
 jwt = JWT(app,auth,identity)
 
 api.add_resource(Person, "/person/<string:PersonId>")
-api.add_resource(PersonDetails, "/person")
-api.add_resource(MultiplePerson, "/multiple/")
+api.add_resource(MultiplePerson, "/person")
 
 if __name__ == '__main__':
     app.run(debug=True)

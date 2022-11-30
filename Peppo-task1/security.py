@@ -2,7 +2,8 @@ from hmac import compare_digest
 from user import User
 
 users = [
-    User(1,'snegha','snegha123')
+    User(1,'snegha','snegha123'),
+    User(2,'krishva','krishva123')
 ]
 
 username_mapping = {u.username:u for u in users}
@@ -16,5 +17,8 @@ def auth(username,password):
 def identity(payload):
     user_id = payload['identity']
     return uid_mapping.get(user_id,None)
+
+
+
 
 
